@@ -10,6 +10,8 @@ const s = (p) => {
   p.setup = () => {
     playBtn = document.querySelector('#play-btn')
     playBtn.addEventListener('click', () => {
+       // mimics the autoplay policy
+  getAudioContext().suspend();
       document.body.classList.add('start-anim')
       audio.loop()
     })
