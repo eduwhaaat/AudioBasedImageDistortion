@@ -8,6 +8,8 @@ const s = (p) => {
   }
 
   p.setup = () => {
+ 
+    audio.start()
       playBtn = document.querySelector('#play-btn')
       playBtn.addEventListener('click', () => {
         document.body.classList.add('start-anim')
