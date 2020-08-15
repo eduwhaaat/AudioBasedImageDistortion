@@ -8,8 +8,6 @@ const s = (p) => {
   }
 
   p.setup = () => {
-     // mimics the autoplay policy
-     getAudioContext().suspend();
       playBtn = document.querySelector('#play-btn')
       playBtn.addEventListener('click', () => {
         document.body.classList.add('start-anim')
@@ -55,12 +53,11 @@ const s = (p) => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
     demo3Shader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
   }
- 
- 
+
   toggleAudio = () => {
     if (audio.isPlaying()) {
       audio.pause()
-    } else { userStartAudio();
+    } else {
       audio.loop()
     }
   }
