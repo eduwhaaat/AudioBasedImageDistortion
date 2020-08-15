@@ -1,7 +1,6 @@
 const s = (p) => {
   let demo3Shader, img, fft, audio, toggleBtn
-  let playMode = 'sustain';
-  
+
   p.preload = () => {
     audio         = p.loadSound('audio/demo3.mp3')
     demo3Shader   = p.loadShader('shaders/base.vert', 'shaders/d3.frag')
@@ -9,14 +8,12 @@ const s = (p) => {
   }
 
   p.setup = () => {
-    
       playBtn = document.querySelector('#play-btn')
       playBtn.addEventListener('click', () => {
         document.body.classList.add('start-anim')
         audio.loop()
       })
- // mimics the autoplay policy
- getAudioContext().suspend();
+
       p.pixelDensity(1)
       p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL)
 
@@ -56,17 +53,13 @@ const s = (p) => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
     demo3Shader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
   }
- 
- 
-  toggleAudio = () => { 
-      if (playMode === 'sustain') {
-        playMode = 'restart';
-      } else {
-        playMode = 'sustain';
-      }
-      audio.playMode(playMode);
+
+  toggleAudio = () => {
+    if (audio.isPlaying()) {
+      audio.pause()
+    } else {
+      audio.loop()
     }
-   
   }
 };
 
