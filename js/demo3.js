@@ -9,14 +9,14 @@ const s = (p) => {
   }
 
   p.setup = () => {
-     // mimics the autoplay policy
-     getAudioContext().suspend();
+    
       playBtn = document.querySelector('#play-btn')
       playBtn.addEventListener('click', () => {
         document.body.classList.add('start-anim')
         audio.loop()
       })
-
+ // mimics the autoplay policy
+ getAudioContext().suspend();
       p.pixelDensity(1)
       p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL)
 
