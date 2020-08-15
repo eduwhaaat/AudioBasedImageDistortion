@@ -2,6 +2,7 @@ const s = (p) => {
   let demo3Shader, img, fft, audio, toggleBtn
 
   p.preload = () => {
+   
     audio = p.loadSound('audio/demo3.mp3')
     demo3Shader = p.loadShader('shaders/base.vert', 'shaders/d3.frag')
     img = p.loadImage('img/3.jpg')
@@ -12,6 +13,7 @@ const s = (p) => {
     playBtn.addEventListener('click', () => {
       
       document.body.classList.add('start-anim')
+      audio.play()
       audio.loop()
     })
 
@@ -60,7 +62,6 @@ const s = (p) => {
       audio.pause()
     } else {
       
-      getAudioContext().resume() 
       audio.loop()
     }
   }
