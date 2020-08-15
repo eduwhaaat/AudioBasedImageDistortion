@@ -7,7 +7,7 @@ const s = (p) => {
     img           = p.loadImage('img/3.jpg')
   }
 
-  p.setup = () => {
+  p.setup = () => { 
       playBtn = document.querySelector('#play-btn')
       playBtn.addEventListener('click', () => {
         document.body.classList.add('start-anim')
