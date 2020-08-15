@@ -10,7 +10,7 @@ const s = (p) => {
   p.setup = () => {
     playBtn = document.querySelector('#play-btn')
     playBtn.addEventListener('click', () => {
-      getAudioContext().resume() 
+      
       document.body.classList.add('start-anim')
       audio.loop()
     })
@@ -59,6 +59,8 @@ const s = (p) => {
     if (audio.isPlaying()) {
       audio.pause()
     } else {
+      
+      getAudioContext().resume() 
       audio.loop()
     }
   }
