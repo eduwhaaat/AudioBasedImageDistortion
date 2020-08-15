@@ -1,6 +1,7 @@
 const s = (p) => {
   let demo3Shader, img, fft, audio, toggleBtn
-
+  let playMode = 'sustain';
+  
   p.preload = () => {
     audio         = p.loadSound('audio/demo3.mp3')
     demo3Shader   = p.loadShader('shaders/base.vert', 'shaders/d3.frag')
@@ -57,13 +58,15 @@ const s = (p) => {
   }
  
  
-  toggleAudio = () => {
-    if (audio.isPlaying()) {
-      audio.pause()
-    } else { 
-      userStartAudio();
-      audio.loop()
+  toggleAudio = () => { 
+      if (playMode === 'sustain') {
+        playMode = 'restart';
+      } else {
+        playMode = 'sustain';
+      }
+      audio.playMode(playMode);
     }
+   
   }
 };
 
