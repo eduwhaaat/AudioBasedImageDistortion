@@ -36,8 +36,8 @@ const s = (p) => {
       toggleBtn = document.querySelector('#toggle-btn')
       toggleBtn.addEventListener('click', () => {
         toggleBtn.classList.toggle('toggle--on')
-        userStartAudio();
-        this.toggleAudio()
+        userStartAudio().then(function() {  this.toggleAudio(); });
+       
       })
 
       fft = new p5.FFT()
