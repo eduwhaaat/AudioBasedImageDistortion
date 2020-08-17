@@ -6,15 +6,8 @@ const s = (p) => {
     demo3Shader   = p.loadShader('shaders/base.vert', 'shaders/d3.frag')
     img           = p.loadImage('img/3.jpg')
   }
+   
   
-  function draw() {
-    background(220);
-    textAlign(CENTER, CENTER);
-    text(getAudioContext().state, width/2, height/2);
-  }
-  function mousePressed() {
-    userStartAudio();
-  }
   p.setup = () => { 
     
      
@@ -26,7 +19,7 @@ const s = (p) => {
       p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL)
 
       toggleBtn = document.querySelector('#toggle-btn')
-      toggleBtn.mousePressed('click', () => {
+      toggleBtn.addEventListener('click', () => {
         toggleBtn.classList.toggle('toggle--on')
         this.toggleAudio();  
        
