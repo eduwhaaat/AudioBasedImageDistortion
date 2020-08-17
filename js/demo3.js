@@ -12,7 +12,10 @@ const s = (p) => {
     
      
       playBtn = document.querySelector('#play-btn')
-      playBtn.onClick(userPressed);
+      playBtn.addEventListener('click', () => {
+       
+        userPressed();
+      })
       
 
       p.pixelDensity(1)
