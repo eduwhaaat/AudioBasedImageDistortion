@@ -6,8 +6,24 @@ const s = (p) => {
     demo3Shader   = p.loadShader('shaders/base.vert', 'shaders/d3.frag')
     img           = p.loadImage('img/3.jpg')
   }
-
+  
+  function draw() {
+    background(220);
+    textAlign(CENTER, CENTER);
+    text(getAudioContext().state, width/2, height/2);
+  }
+  function mousePressed() {
+    userStartAudio();
+  }
   p.setup = () => { 
+     // mimics the autoplay policy
+     getAudioContext().suspend();
+  
+  
+   
+     // This won't play until the context has resumed
+     audio.play();
+     
       playBtn = document.querySelector('#play-btn')
       playBtn.addEventListener('click', () => {
         document.body.classList.add('start-anim')
@@ -20,6 +36,7 @@ const s = (p) => {
       toggleBtn = document.querySelector('#toggle-btn')
       toggleBtn.addEventListener('click', () => {
         toggleBtn.classList.toggle('toggle--on')
+        userStartAudio();
         this.toggleAudio()
       })
 
@@ -53,7 +70,7 @@ const s = (p) => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
     demo3Shader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
   }
-
+ 
   toggleAudio = () => {
     if (audio.isPlaying()) {
       audio.pause()
