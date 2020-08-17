@@ -6,17 +6,13 @@ const s = (p) => {
     demo3Shader   = p.loadShader('shaders/base.vert', 'shaders/d3.frag')
     img           = p.loadImage('img/3.jpg')
   }
-   
-  
+
   p.setup = () => { 
-    
-     
       playBtn = document.querySelector('#play-btn')
       playBtn.addEventListener('click', () => {
-       
-        userPressed();
+        document.body.classList.add('start-anim')
+        audio.loop()
       })
-      
 
       p.pixelDensity(1)
       p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL)
@@ -24,8 +20,7 @@ const s = (p) => {
       toggleBtn = document.querySelector('#toggle-btn')
       toggleBtn.addEventListener('click', () => {
         toggleBtn.classList.toggle('toggle--on')
-        this.toggleAudio();  
-       
+        this.toggleAudio()
       })
 
       fft = new p5.FFT()
@@ -33,12 +28,6 @@ const s = (p) => {
       demo3Shader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
       demo3Shader.setUniform('u_texture', img)
       demo3Shader.setUniform('u_tResolution', [img.width, img.height])
-  }
-  function userPressed() {
-    // playing a sound file on a user gesture
-    // is equivalent to `userStartAudio()`
-    document.body.classList.add('start-anim')
-        audio.loop()
   }
 
   p.draw = () => {
@@ -64,7 +53,7 @@ const s = (p) => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
     demo3Shader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
   }
- 
+
   toggleAudio = () => {
     if (audio.isPlaying()) {
       audio.pause()
