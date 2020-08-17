@@ -19,7 +19,7 @@ const s = (p) => {
     
      
       playBtn = document.querySelector('#play-btn')
-      playBtn.mousePressed(userPressed);
+      playBtn.onClick(userPressed);
       
 
       p.pixelDensity(1)
