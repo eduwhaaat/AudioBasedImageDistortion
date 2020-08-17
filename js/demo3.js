@@ -16,27 +16,19 @@ const s = (p) => {
     userStartAudio();
   }
   p.setup = () => { 
-     // mimics the autoplay policy
-     getAudioContext().suspend();
-  
-  
-   
-     // This won't play until the context has resumed
-     audio.play();
+    
      
       playBtn = document.querySelector('#play-btn')
-      playBtn.addEventListener('click', () => {
-        document.body.classList.add('start-anim')
-        audio.loop()
-      })
+      playBtn.mousePressed(userPressed);
+      
 
       p.pixelDensity(1)
       p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL)
 
       toggleBtn = document.querySelector('#toggle-btn')
-      toggleBtn.addEventListener('click', () => {
+      toggleBtn.mousePressed('click', () => {
         toggleBtn.classList.toggle('toggle--on')
-        userStartAudio().then(function() {  this.toggleAudio(); });
+        this.toggleAudio();  
        
       })
 
@@ -45,6 +37,12 @@ const s = (p) => {
       demo3Shader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
       demo3Shader.setUniform('u_texture', img)
       demo3Shader.setUniform('u_tResolution', [img.width, img.height])
+  }
+  function userPressed() {
+    // playing a sound file on a user gesture
+    // is equivalent to `userStartAudio()`
+    document.body.classList.add('start-anim')
+        audio.loop()
   }
 
   p.draw = () => {
